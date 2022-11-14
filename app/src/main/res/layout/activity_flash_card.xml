@@ -6,4 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".FlashCard">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:id="@+id/FlashCardToolbar"
+        android:layout_height="wrap_content"
+        app:logo="@android:drawable/btn_star"
+        app:title="    FlashCards!"
+        app:subtitle="Practice words you struggle with!"
+        android:background="@color/purple_200">
+
+    </androidx.appcompat.widget.Toolbar>
+
+        <ViewFlipper
+            android:id="@+id/simpleViewFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English Word" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Spanish Word" />
+
+        </ ViewFlipper >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Flip">
+
+        </Button>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Next Word">
+
+            </Button>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:text="Flip">
+
+            </Button>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Previous Word">
+
+            </Button>
+
+
+        </LinearLayout>
+
+<!--        View flipper is going to go between definition and
+word that is being defined.-->
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
