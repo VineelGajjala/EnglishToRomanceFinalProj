@@ -13,6 +13,13 @@
         android:theme="@style/Theme.Englishtoromance"
         tools:targetApi="31">
         <activity
+            android:name=".FlashCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Learn"
             android:exported="false">
             <meta-data

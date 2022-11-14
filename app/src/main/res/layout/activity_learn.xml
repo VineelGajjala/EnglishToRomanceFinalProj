@@ -5,5 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Learn">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:id="@+id/learnToolbar"
+            android:layout_height="wrap_content"
+            app:logo="@android:drawable/btn_star"
+            app:title="    Learn!"
+            app:subtitle="Translate sentences!"
+            android:background="@color/purple_200">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/learnEditText"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="English Phrase"
+            >
+        </EditText>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/learnTranslateButton"
+            android:layout_gravity="center"
+            android:text="GO"
+            >
+        </Button>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Translated Sentence"
+            android:id="@+id/translatedSentence"
+            >
+        </TextView>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Listen!"
+            android:id="@+id/learnAudio"
+            >
+
+        </Button>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
