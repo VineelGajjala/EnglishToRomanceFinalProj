@@ -7,4 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="Button_Accent">#e32a35</color>
+    <color name="Background">#fe3981</color>
 </resources>
