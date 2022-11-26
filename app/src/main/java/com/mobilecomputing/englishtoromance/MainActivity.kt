@@ -38,12 +38,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
         contentMainBinding = activityMainBinding.contentMain
 
-//        contentMainBinding.clickitLaunch.setOnClickListener {
-//            intent = Intent(this, activity_click_it::class.java)
-//            Log.d("XXX", "Launched activity")
-//            resultLauncher.launch(intent)
-//
-//        }
+        contentMainBinding.clickitLaunch.setOnClickListener {
+            intent = Intent(this, activity_click_it::class.java)
+            Log.d("XXX", "Launched activity")
+            resultLauncher.launch(intent)
+
+        }
 
 
 
