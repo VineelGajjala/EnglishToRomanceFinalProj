@@ -42,7 +42,24 @@ class MainActivity : AppCompatActivity() {
             intent = Intent(this, activity_click_it::class.java)
             Log.d("XXX", "Launched activity")
             resultLauncher.launch(intent)
+        }
 
+        contentMainBinding.flashCardLaunch.setOnClickListener {
+            intent = Intent(this, FlashCard::class.java)
+            Log.d("XXX", "Launched activity")
+            resultLauncher.launch(intent)
+        }
+
+        contentMainBinding.learnLaunch.setOnClickListener {
+            intent = Intent(this, Learn::class.java)
+            Log.d("XXX", "Launched activity")
+            resultLauncher.launch(intent)
+        }
+
+        contentMainBinding.testLaunch.setOnClickListener {
+            intent = Intent(this, activity_test::class.java)
+            Log.d("XXX", "Launched activity")
+            resultLauncher.launch(intent)
         }
 
 

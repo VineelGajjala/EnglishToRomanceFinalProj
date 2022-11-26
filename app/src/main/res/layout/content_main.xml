@@ -44,6 +44,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="50dp"
                 android:text="Flash Cards"
+                android:id="@+id/flashCardLaunch"
                 >
 
             </Button>
@@ -61,6 +62,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android:text="Learn"
+                android:id="@+id/learnLaunch"
                 >
 
             </Button>
@@ -71,7 +73,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
                 android:layout_marginStart="50dp"
-                android:text="Flash Cards"
+                android:text="Test"
+                android:id="@+id/testLaunch"
                 >
 
             </Button>
