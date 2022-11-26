@@ -39,6 +39,14 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <activity android:name=".activity_click_it"
+            android:exported="true"
+            android:label="Intent"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+
+
     </application>
 
 </manifest>
