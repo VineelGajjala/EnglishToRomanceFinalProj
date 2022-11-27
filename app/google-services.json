@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "583209123555",
+    "project_id": "finalprojectmc",
+    "storage_bucket": "finalprojectmc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583209123555:android:75cc3bdfcf4d721b404fd6",
+        "android_client_info": {
+          "package_name": "com.mobilecomputing.englishtoromance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583209123555-06uprmi8t9d2vn72slp369hkm2f6n1cu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobilecomputing.englishtoromance",
+            "certificate_hash": "2edfb595c883d9ca3b8b220ea13d67f934a28d41"
+          }
+        },
+        {
+          "client_id": "583209123555-saf3skuc0qopt5b7vnoba2l47j9fq0ld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByL9vgbp10etmDPckGgQUf_R6qrwsHZp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583209123555-saf3skuc0qopt5b7vnoba2l47j9fq0ld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
