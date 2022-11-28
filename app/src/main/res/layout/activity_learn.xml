@@ -18,7 +18,7 @@
             app:logo="@android:drawable/btn_star"
             app:title="    Learn!"
             app:subtitle="Translate sentences!"
-            android:background="@color/Background">
+            android:background="@color/ToolBar_Accent">
 
             <Button
                 android:layout_width="wrap_content"
@@ -124,6 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Listen!"
+            android:backgroundTint="@color/Button_Accent"
             android:id="@+id/learnAudio"
             >
 
