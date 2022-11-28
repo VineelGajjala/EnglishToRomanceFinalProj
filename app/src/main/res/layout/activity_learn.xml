@@ -32,6 +32,38 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/fromLanguageLearn"
+                >
+
+            </Spinner>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_rightarrow"
+                android:backgroundTint="@color/Button_Accent"
+                >
+            </ImageView>
+
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/toLanguageLearn"
+                >
+
+            </Spinner>
+
+        </LinearLayout>
+
 
 
 
@@ -41,8 +73,7 @@
             android:id="@+id/learnEditText"
             android:layout_height="0dp"
             android:layout_weight=".5"
-            android:text="&quot;English Phrase&quot;"
-            android:textAllCaps="true"
+            android:text = "From Phrase"
             android:textSize="25dp"
             android:gravity="center"
             android:textColor="@color/white"

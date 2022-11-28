@@ -1,6 +1,5 @@
 package com.mobilecomputing.englishtoromance
 
-import android.R.attr.y
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
@@ -22,7 +21,7 @@ import java.util.*
 
 class Learn : AppCompatActivity() {
 
-    var englishSpanishTranslator: FirebaseTranslator? = null
+    var translator: FirebaseTranslator? = null
     private lateinit var learnBinding: ActivityLearnBinding
     private var tts: TextToSpeech? = null
     private var count : Int = 0
@@ -43,7 +42,8 @@ class Learn : AppCompatActivity() {
             this
         ) { status ->
             if (status != TextToSpeech.ERROR) {
-                tts!!.setLanguage(Locale.US)
+                val locSpanish = Locale("spa", "MEX")
+                tts!!.language = locSpanish
             }
         }
 
@@ -53,7 +53,7 @@ class Learn : AppCompatActivity() {
                 .setTargetLanguage(FirebaseTranslateLanguage.ES)
                 .build()
 
-        englishSpanishTranslator = FirebaseNaturalLanguage.getInstance().getTranslator(options)
+        translator = FirebaseNaturalLanguage.getInstance().getTranslator(options)
 
 
         val button: Button = findViewById(R.id.learnTranslateButton)
@@ -64,8 +64,8 @@ class Learn : AppCompatActivity() {
         var fromLanguageSpinner : Spinner = findViewById(R.id.fromLanguageLearn)
         var toLanguageSpinner : Spinner = findViewById(R.id.toLanguageLearn)
 
-        var fromLanguages = arrayOf("From", "English", "Spanish")
-        var toLanguages = arrayOf("To", "English", "Spanish")
+        var fromLanguages = arrayOf( "English", "Spanish")
+        var toLanguages = arrayOf("Spanish", "English")
 
         val fromLanguageAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, fromLanguages)
         fromLanguageSpinner.adapter = fromLanguageAdapter
@@ -76,6 +76,8 @@ class Learn : AppCompatActivity() {
             override fun onItemSelected(arg0: AdapterView<*>?, arg1: View?, arg2: Int, arg3: Long) {
                 val item: Int = fromLanguageSpinner.getSelectedItemPosition()
                 val y = fromLanguages.get(item)
+                fromSpinnerSelect(y)
+
             }
 
             override fun onNothingSelected(arg0: AdapterView<*>?) {}
@@ -84,7 +86,8 @@ class Learn : AppCompatActivity() {
         toLanguageSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(arg0: AdapterView<*>?, arg1: View?, arg2: Int, arg3: Long) {
                 val item: Int = toLanguageSpinner.getSelectedItemPosition()
-                val y = fromLanguages.get(item)
+                val y = toLanguages.get(item)
+                toSpinnerSelect(y)
             }
 
             override fun onNothingSelected(arg0: AdapterView<*>?) {}
@@ -92,8 +95,14 @@ class Learn : AppCompatActivity() {
 
         speechToLearn.setOnClickListener {
             var intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+
+            if (fromLanguage == 0) {
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            } else if (fromLanguage == 1) {
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "es-Es")
+            }
+
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
             intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to Convert into Text")
             try {
                 startActivityForResult(intent, 0)
@@ -116,6 +125,7 @@ class Learn : AppCompatActivity() {
         Log.d("XXX","end of on create")
         button.setOnClickListener {
             Log.d("XXX", "learnTranslateBUtton")
+            setTranslator()
             var toTranslateString = edtText.text.toString()
             var toLog = "Word =" + toTranslateString
             Log.d("XXX", toLog)
@@ -155,7 +165,7 @@ class Learn : AppCompatActivity() {
         val conditions = FirebaseModelDownloadConditions.Builder().requireWifi().build()
 
         // below line is use to download our modal.
-        englishSpanishTranslator!!.downloadModelIfNeeded(conditions)
+        translator!!.downloadModelIfNeeded(conditions)
             .addOnSuccessListener(OnSuccessListener<Void?> { // this method is called when modal is downloaded successfully.
                 Toast.makeText(
                     this,
@@ -176,7 +186,7 @@ class Learn : AppCompatActivity() {
 
     private fun translateLanguage(input: String) {
         var translatedSentence : TextView = findViewById(R.id.translatedSentence);
-        englishSpanishTranslator!!.translate(input)
+        translator!!.translate(input)
             .addOnSuccessListener(OnSuccessListener<String?> { s -> translatedSentence.setText(s) })
             .addOnFailureListener(
                 OnFailureListener {
@@ -189,18 +199,49 @@ class Learn : AppCompatActivity() {
     }
 
     private fun fromSpinnerSelect(s : String) {
-
+        if (s == "English") {
+            fromLanguage = 0
+        } else if (s == "Spanish") {
+            fromLanguage = 1
+        } else {
+            fromLanguage = -1
+        }
     }
 
     private fun toSpinnerSelect(s: String) {
-//        if (s == "English") {
-//            tts!!.language = Locale.US
-//        } else if (s == "Spanish") {
-//            val locSpanish = Locale("spa", "MEX")
-//            tts!!.language = locSpanish
-//        } else {
-//            tts!!.language = null
-//        }
+        if (s == "English") {
+            tts!!.language = Locale.US
+            toLanguage = 0
+        } else if (s == "Spanish") {
+            val locSpanish = Locale("spa", "MEX")
+            tts!!.language = locSpanish
+            toLanguage = 1
+        } else {
+            tts!!.language = null
+        }
+    }
+
+    private fun setTranslator() {
+        val options =
+            FirebaseTranslatorOptions.Builder()
+//                .setSourceLanguage(FirebaseTranslateLanguage.EN)
+//                .setTargetLanguage(FirebaseTranslateLanguage.ES)
+//                .build()
+
+
+        if (fromLanguage == 0) {
+            options.setSourceLanguage(FirebaseTranslateLanguage.EN)
+        } else if (fromLanguage == 1) {
+            options.setSourceLanguage(FirebaseTranslateLanguage.ES)
+        }
+
+        if (toLanguage == 0) {
+            options.setTargetLanguage(FirebaseTranslateLanguage.EN)
+        } else if (toLanguage == 1) {
+            options.setTargetLanguage(FirebaseTranslateLanguage.ES)
+        }
+
+        translator = FirebaseNaturalLanguage.getInstance().getTranslator(options.build())
     }
 
 
