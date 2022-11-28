@@ -1,10 +1,12 @@
 package com.mobilecomputing.englishtoromance
 
+import android.R.attr.y
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnFailureListener
@@ -24,6 +26,8 @@ class Learn : AppCompatActivity() {
     private lateinit var learnBinding: ActivityLearnBinding
     private var tts: TextToSpeech? = null
     private var count : Int = 0
+    private var fromLanguage = 0
+    private var toLanguage = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +61,34 @@ class Learn : AppCompatActivity() {
         var ttsButton : Button = findViewById(R.id.learnAudio)
         var exitButton : Button = findViewById(R.id.exitLearn)
         var speechToLearn : ImageView = findViewById(R.id.speechToTextLearn)
+        var fromLanguageSpinner : Spinner = findViewById(R.id.fromLanguageLearn)
+        var toLanguageSpinner : Spinner = findViewById(R.id.toLanguageLearn)
+
+        var fromLanguages = arrayOf("From", "English", "Spanish")
+        var toLanguages = arrayOf("To", "English", "Spanish")
+
+        val fromLanguageAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, fromLanguages)
+        fromLanguageSpinner.adapter = fromLanguageAdapter
+        val toLanguageAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, toLanguages)
+        toLanguageSpinner.adapter = toLanguageAdapter
+
+        fromLanguageSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(arg0: AdapterView<*>?, arg1: View?, arg2: Int, arg3: Long) {
+                val item: Int = fromLanguageSpinner.getSelectedItemPosition()
+                val y = fromLanguages.get(item)
+            }
+
+            override fun onNothingSelected(arg0: AdapterView<*>?) {}
+        })
+
+        toLanguageSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(arg0: AdapterView<*>?, arg1: View?, arg2: Int, arg3: Long) {
+                val item: Int = toLanguageSpinner.getSelectedItemPosition()
+                val y = fromLanguages.get(item)
+            }
+
+            override fun onNothingSelected(arg0: AdapterView<*>?) {}
+        })
 
         speechToLearn.setOnClickListener {
             var intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
@@ -97,8 +129,6 @@ class Learn : AppCompatActivity() {
             var toLog = "Word =" + toTranslateString
             Log.d("XXX", toLog)
             downloadModal(toTranslateString)
-            val locSpanish = Locale("spa", "MEX")
-            tts!!.language = locSpanish
             var translatedSentence : TextView = findViewById(R.id.translatedSentence);
             var text = translatedSentence.text.toString()
             tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null,"")
@@ -156,6 +186,21 @@ class Learn : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 })
+    }
+
+    private fun fromSpinnerSelect(s : String) {
+
+    }
+
+    private fun toSpinnerSelect(s: String) {
+//        if (s == "English") {
+//            tts!!.language = Locale.US
+//        } else if (s == "Spanish") {
+//            val locSpanish = Locale("spa", "MEX")
+//            tts!!.language = locSpanish
+//        } else {
+//            tts!!.language = null
+//        }
     }
 
 
