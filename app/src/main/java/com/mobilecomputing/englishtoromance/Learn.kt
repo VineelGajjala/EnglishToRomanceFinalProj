@@ -1,6 +1,7 @@
 package com.mobilecomputing.englishtoromance
 
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -15,12 +16,14 @@ import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguag
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslator
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions
 import com.mobilecomputing.englishtoromance.databinding.ActivityLearnBinding
+import java.util.*
 
 
 class Learn : AppCompatActivity() {
 
     var englishSpanishTranslator: FirebaseTranslator? = null
     private lateinit var learnBinding: ActivityLearnBinding
+    private var tts: TextToSpeech? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,10 +31,18 @@ class Learn : AppCompatActivity() {
         setContentView(R.layout.activity_learn)
         learnBinding = ActivityLearnBinding.inflate(layoutInflater)
 
+        tts = TextToSpeech(
+            this
+        ) { status ->
+            if (status != TextToSpeech.ERROR) {
+                tts!!.setLanguage(Locale.US)
+            }
+        }
+
         val options =
             FirebaseTranslatorOptions.Builder() // below line we are specifying our source language.
                 .setSourceLanguage(FirebaseTranslateLanguage.EN) // in below line we are displaying our target language.
-                .setTargetLanguage(FirebaseTranslateLanguage.DE) // after that we are building our options.
+                .setTargetLanguage(FirebaseTranslateLanguage.ES) // after that we are building our options.
                 .build()
         // below line is to get instance
         // for firebase natural language.
@@ -43,7 +54,8 @@ class Learn : AppCompatActivity() {
 //        var firebaseTranslator = FirebaseNaturalLanguage.getInstance()
 
         val button: Button = findViewById(R.id.learnTranslateButton)
-        var edtText : EditText = findViewById(R.id.learnEditText);
+        var edtText : EditText = findViewById(R.id.learnEditText)
+        var ttsButton : Button = findViewById(R.id.learnAudio)
 
 
 
@@ -56,9 +68,19 @@ class Learn : AppCompatActivity() {
             downloadModal(toTranslateString)
         }
 
-//        learnBinding.learnAudio.setOnClickListener {
-//            Log.d("XXX", "Audio")
-//        }
+        ttsButton.setOnClickListener {
+            Log.d("XXX", "Audio")
+            var toTranslateString = edtText.text.toString()
+            var toLog = "Word =" + toTranslateString
+            Log.d("XXX", toLog)
+            downloadModal(toTranslateString)
+            val locSpanish = Locale("spa", "MEX")
+            tts!!.language = locSpanish
+            var translatedSentence : TextView = findViewById(R.id.translatedSentence);
+            var text = translatedSentence.text.toString()
+            tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null,"")
+//            tts!!.speak("Hello World!",TextToSpeech.QUEUE_FLUSH, null,"" )
+        }
 
     }
 
