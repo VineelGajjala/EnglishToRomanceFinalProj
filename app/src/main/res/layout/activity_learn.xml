@@ -21,23 +21,81 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EXIT"
+            android:id="@+id/exitLearn"
+            android:layout_gravity="right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
         <EditText
             android:layout_width="match_parent"
             android:id="@+id/learnEditText"
+            android:gravity="top"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight=".5"
             android:text="English Phrase"
             >
         </EditText>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/learnTranslateButton"
-            android:layout_gravity="center"
-            android:text="GO"
-            >
-        </Button>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:text="GO"
+                >
+            </Button>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/learnTranslateButton"
+                android:layout_gravity="center"
+                android:text="GO"
+                >
+            </Button>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:text="GO"
+                >
+            </Button>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_mic"
+                android:id="@+id/speechToTextLearn"
+                app:tint="@color/purple_200"
+                >
+            </ImageView>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:text="GO"
+                >
+            </Button>
+
+        </LinearLayout>
+
 
         <TextView
             android:layout_width="match_parent"

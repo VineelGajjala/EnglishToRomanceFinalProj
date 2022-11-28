@@ -38,6 +38,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
         contentMainBinding = activityMainBinding.contentMain
 
+        if (this.getSupportActionBar() != null) {
+            this.getSupportActionBar()!!.hide();
+        }
+
         contentMainBinding.clickitLaunch.setOnClickListener {
             intent = Intent(this, activity_click_it::class.java)
             Log.d("XXX", "Launched activity")
