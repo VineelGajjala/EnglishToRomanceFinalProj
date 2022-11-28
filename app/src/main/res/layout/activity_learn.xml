@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/Background"
         >
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -17,28 +18,34 @@
             app:logo="@android:drawable/btn_star"
             app:title="    Learn!"
             app:subtitle="Translate sentences!"
-            android:background="@color/purple_200">
+            android:background="@color/Background">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EXIT"
+                android:id="@+id/exitLearn"
+                android:layout_gravity="right"
+                android:backgroundTint="@color/Button_Accent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.appcompat.widget.Toolbar>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="EXIT"
-            android:id="@+id/exitLearn"
-            android:layout_gravity="right"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
 
 
         <EditText
             android:layout_width="match_parent"
             android:id="@+id/learnEditText"
-            android:gravity="top"
             android:layout_height="0dp"
             android:layout_weight=".5"
-            android:text="English Phrase"
+            android:text="&quot;English Phrase&quot;"
+            android:textAllCaps="true"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:textColor="@color/white"
             >
         </EditText>
 
@@ -61,6 +68,7 @@
                 android:layout_weight="1"
                 android:id="@+id/learnTranslateButton"
                 android:layout_gravity="center"
+                android:backgroundTint="@color/Button_Accent"
                 android:text="GO"
                 >
             </Button>
@@ -80,7 +88,8 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_mic"
                 android:id="@+id/speechToTextLearn"
-                app:tint="@color/purple_200"
+                app:tint="@color/white"
+                android:background="@color/Button_Accent"
                 >
             </ImageView>
 
@@ -101,7 +110,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Translated Sentence"
+            android:text="&quot;Translated Sentence&quot;"
+            android:textAllCaps="true"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:textColor="@color/white"
             android:id="@+id/translatedSentence"
             >
         </TextView>

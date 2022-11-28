@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/Background"
         >
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -18,7 +19,7 @@
         app:logo="@android:drawable/btn_star"
         app:title="    FlashCards!"
         app:subtitle="Practice words you struggle with!"
-        android:background="@color/purple_200">
+        android:background="@color/Background">
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -31,13 +32,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="English Word" />
+                android:text="&quot;English Word&quot;"
+                android:textSize="40dp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Spanish Word" />
+                android:text="&quot;Spanish Word&quot;"
+                android:textSize="40dp"
+                android:textColor="@color/white"
+                android:layout_gravity="center"/>
 
         </ViewFlipper >
 
@@ -45,6 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/Button_Accent"
             android:text="Flip">
 
         </Button>
@@ -57,6 +66,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/Button_Accent"
                 android:text="Next Word">
 
             </Button>
@@ -73,6 +84,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/Button_Accent"
                 android:text="Previous Word">
 
             </Button>

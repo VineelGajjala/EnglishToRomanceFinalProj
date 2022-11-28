@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/Background"
         >
 <!--        <androidx.appcompat.widget.Toolbar-->
 <!--            android:layout_width="match_parent"-->
@@ -19,6 +20,16 @@
 <!--            app:title="English To Romance!"-->
 <!--            android:background="@color/purple_200">-->
 <!--        </androidx.appcompat.widget.Toolbar>-->
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="40dp"
+            android:backgroundTint="@color/Button_Accent"
+            android:text="Language"
+            android:id="@+id/langaugeSelection"
+        ></Button>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
+                android:backgroundTint="@color/Button_Accent"
                 android:text="Click-It"
                 android:id="@+id/clickitLaunch"
                 >
@@ -43,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="50dp"
+                android:backgroundTint="@color/Button_Accent"
                 android:text="Flash Cards"
                 android:id="@+id/flashCardLaunch"
                 >
@@ -61,18 +74,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
+                android:backgroundTint="@color/Button_Accent"
                 android:text="Learn"
                 android:id="@+id/learnLaunch"
                 >
 
             </Button>
 
-
             <Button
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
                 android:layout_marginStart="50dp"
+                android:backgroundTint="@color/Button_Accent"
                 android:text="Test"
                 android:id="@+id/testLaunch"
                 >

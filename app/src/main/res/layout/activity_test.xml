@@ -5,5 +5,113 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity_test">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/Background"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/test_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            >
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EXIT"
+                android:backgroundTint="@color/Button_Accent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@android:drawable/arrow_up_float"
+                android:layout_weight="4"
+                android:scaleType="fitCenter"
+                app:tint="@color/Button_Accent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/test_sentence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I am hungry"
+            android:textAllCaps="true"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/test_toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/user_translation"
+            />
+
+        <EditText
+            android:id="@+id/user_translation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&quot;Type Translated Sentence Here&quot;"
+            android:textAllCaps="true"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/test_sentence"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/test_action"
+            />
+
+        <Button
+            android:id="@+id/test_action"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/Button_Accent"
+            android:text="TEST"
+            app:layout_constraintTop_toBottomOf="@id/user_translation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/correct_sentence"
+            >
+        </Button>
+
+        <TextView
+            android:id="@+id/correct_sentence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:text="Correct Sentence"
+            android:textAllCaps="true"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/test_action"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/percentage_correct"
+            />
+
+        <TextView
+            android:id="@+id/percentage_correct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:text="X/100%"
+            android:textAllCaps="true"
+            android:textSize="25dp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/correct_sentence"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

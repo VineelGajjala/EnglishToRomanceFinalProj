@@ -16,7 +16,7 @@
             android:id="@+id/MainActivityToolBar"
             android:layout_height="wrap_content"
             app:title="English To Romance!"
-            android:background="@color/purple_200">
+            android:background="@color/Background">
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
