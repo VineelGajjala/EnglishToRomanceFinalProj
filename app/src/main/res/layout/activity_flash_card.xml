@@ -6,53 +6,108 @@
     android:layout_height="match_parent"
     tools:context=".FlashCard">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/Background"
-        >
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:background="@color/Background"-->
+<!--        >-->
     <androidx.appcompat.widget.Toolbar
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:id="@+id/FlashCardToolbar"
         android:layout_height="wrap_content"
         app:logo="@android:drawable/btn_star"
         app:title="    FlashCards!"
         app:subtitle="Practice words you struggle with!"
-        android:background="@color/Background">
-
-    </androidx.appcompat.widget.Toolbar>
-
-        <ViewFlipper
-            android:id="@+id/simpleViewFlipper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="&quot;English Word&quot;"
-                android:textSize="40dp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="&quot;Spanish Word&quot;"
-                android:textSize="40dp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"/>
-
-        </ViewFlipper >
+        android:background="@color/ToolBar_Accent">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="EXIT"
+            android:id="@+id/exitFlash"
+            android:layout_gravity="right"
+            android:backgroundTint="@color/Button_Accent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+<!--        <ViewFlipper-->
+<!--            android:id="@+id/simpleViewFlipper"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="2">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="&quot;English Word&quot;"-->
+<!--                android:textSize="40dp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:layout_gravity="center"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:text="&quot;Spanish Word&quot;"-->
+<!--                android:textSize="40dp"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:layout_gravity="center"/>-->
+
+<!--        </ViewFlipper >-->
+
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/backCard"
+        android:text="Back Card"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/flipFlash"
+        app:layout_constraintTop_toBottomOf="@id/FlashCardToolbar"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/rounded_corner"
+
+
+        >
+
+    </TextView>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:text="Front Card"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/frontCard"
+        app:layout_constraintBottom_toTopOf="@id/flipFlash"
+        app:layout_constraintTop_toBottomOf="@id/FlashCardToolbar"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAlignment="center"
+        android:background="@drawable/rounded_corner"
+
+        >
+
+    </TextView>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/bottomRowFlash"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
             android:layout_gravity="center"
             android:layout_margin="20dp"
+            android:id="@+id/flipFlash"
             android:backgroundTint="@color/Button_Accent"
             android:text="Flip">
 
@@ -60,25 +115,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/bottomRowFlash"
             android:layout_height="wrap_content">
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="20dp"
-                android:backgroundTint="@color/Button_Accent"
-                android:text="Next Word">
-
-            </Button>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:text="Flip">
-
-            </Button>
 
             <Button
                 android:layout_width="0dp"
@@ -90,12 +129,29 @@
 
             </Button>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible">
+
+            </Button>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/Button_Accent"
+                android:text="Next Word">
+
+            </Button>
+
 
         </LinearLayout>
 
 <!--        View flipper is going to go between definition and
 word that is being defined.-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

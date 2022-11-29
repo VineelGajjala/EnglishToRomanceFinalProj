@@ -10,4 +10,5 @@
     <color name="Button_Accent">#e32a35</color>
     <color name="Background">#fe3981</color>
     <color name="ToolBar_Accent">#a31a23</color>
+    <color name="grey">#d3d3d3</color>
 </resources>
