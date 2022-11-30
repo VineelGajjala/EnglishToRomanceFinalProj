@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.graphics.ColorFilter
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.AnimationSet
 import android.widget.Button
 import android.widget.ImageView
@@ -22,8 +23,8 @@ class FlashCard : AppCompatActivity() {
     lateinit var front_anim:AnimatorSet
     lateinit var back_anim:AnimatorSet
 
-    private var englishWords = arrayOf("Hello", "I'm Sorry", "No")
-    private var spanishWords = arrayOf("Hola", "Lo Siento", "No")
+    private var englishWords = mutableListOf<String>()
+    private var spanishWords = mutableListOf<String>()
     private var currentIndex = 0
 
     var isFront = true
@@ -35,6 +36,8 @@ class FlashCard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flash_card)
+
+        viewModel.fetchflashCards()
 
         //exit intent
         var exitButton : Button = findViewById(R.id.exitFlash)
@@ -86,6 +89,7 @@ class FlashCard : AppCompatActivity() {
 
         var nextWordButton : Button = findViewById(R.id.nextFlash)
         var previousWordButton : Button = findViewById(R.id.previousFlash)
+        var starButton : ImageView = findViewById(R.id.starFlash)
 
         nextWordButton.setOnClickListener {
             var x:String = "X:" + cardFront.x.toString()
@@ -125,6 +129,7 @@ class FlashCard : AppCompatActivity() {
                 .translationX(-1300f)
                 .start()
 
+            starButton.setColorFilter(Color.argb(255, 255, 214, 0));
         }
 
         previousWordButton.setOnClickListener {
@@ -166,14 +171,17 @@ class FlashCard : AppCompatActivity() {
                 .translationX(1300f)
                 .start()
 
+            starButton.setColorFilter(Color.argb(255, 255, 214, 0));
+
         }
 
         // Star functionality
-        var starButton : ImageView = findViewById(R.id.starFlash)
+
         starButton.setColorFilter(Color.argb(255, 50, 50, 50))
         colorFilter = starButton.colorFilter
 
         starButton.setOnClickListener {
+
             if (starButton.colorFilter == colorFilter) {
                 starButton.setColorFilter(Color.argb(255, 255, 214, 0));
                 var id = UUID.randomUUID()
@@ -181,14 +189,23 @@ class FlashCard : AppCompatActivity() {
                 id.toString())
             } else {
                 starButton.setColorFilter(colorFilter)
+                viewModel.removeFlashCard(currentIndex)
             }
 //            starButton.setColorFilter(Color.argb(255, 255, 214, 0));
             Log.d("XXX", starButton.colorFilter.toString())
 //            print("XXX:" + starButton.colorFilter.toString())
+
         }
+        viewModel.observeflashCards().observe(this) {
+            Log.d("XXX", "here?")
+            englishWords = mutableListOf<String>()
+            spanishWords = mutableListOf<String>()
 
-
-
+            for (flashcard in it) {
+                englishWords.add(flashcard.englishWord)
+                spanishWords.add(flashcard.spanishWord)
+            }
+        }
 
     }
 }

@@ -16,6 +16,14 @@ class MainViewModel : ViewModel() {
 
     }
 
+    fun removeFlashCard(position: Int) {
+        val arr = flashCardMetaList.value!!.toMutableList()
+        var removedFlashCardMetaData = arr.removeAt(position)
+        flashCardMetaList.value = arr.toList()
+
+        dbHelp.removePhotoMeta(removedFlashCardMetaData, flashCardMetaList)
+    }
+
     fun signOut() {
         FirebaseAuth.getInstance().signOut()
     }
@@ -33,5 +41,15 @@ class MainViewModel : ViewModel() {
         )
 
         dbHelp.createPhotoMeta(flashCardMeta, flashCardMetaList)
+    }
+    fun fetchflashCards() {
+        dbHelp.fetchPhotoMeta(flashCardMetaList)
+//        Log.d("XXX", flashCardMetaList.value!!.size.toString())
+    }
+    fun observeflashCards(): LiveData<List<FlashCardMeta>> {
+        return flashCardMetaList
+    }
+    fun getflashCards():List<FlashCardMeta> {
+        return flashCardMetaList.value!!
     }
 }

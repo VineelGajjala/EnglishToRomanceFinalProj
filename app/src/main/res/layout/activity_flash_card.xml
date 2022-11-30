@@ -47,6 +47,7 @@
 
     </ImageView>
 
+
 <!--        <ViewFlipper-->
 <!--            android:id="@+id/simpleViewFlipper"-->
 <!--            android:layout_width="match_parent"-->
@@ -144,9 +145,13 @@
             </Button>
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:visibility="invisible">
+                android:layout_weight="1"
+                android:backgroundTint="@color/Button_Accent"
+                android:id="@+id/addNewFlash"
+                android:text="add Card"
+                >
 
             </Button>
 

@@ -24,9 +24,15 @@ class ViewModelDBHelper() {
             .addOnSuccessListener { result ->
                 Log.d(javaClass.simpleName, "allNotes fetch ${result!!.documents.size}")
                 // NB: This is done on a background thread
-                notesList.postValue(result.documents.mapNotNull {
+                for (document in result!!.documents) {
+                    Log.d("XXX", document.data.toString())
+                }
+                notesList.value = (result.documents.mapNotNull {
+                    Log.d("XXX", "reached")
                     it.toObject(FlashCardMeta::class.java)
                 })
+                Log.d("XXX", notesList.value!!.size.toString())
+
             }
             .addOnFailureListener {
                 Log.d(javaClass.simpleName, "allNotes fetch FAILED ", it)
@@ -59,7 +65,6 @@ class ViewModelDBHelper() {
         photoMeta: FlashCardMeta,
         photoMetaList: MutableLiveData<List<FlashCardMeta>>
     ) {
-        // XXX Write me.  Make sure you delete the correct entry
         db.collection(rootCollection).document(photoMeta.firestoreID).delete()
             .addOnSuccessListener {
                 dbFetchPhotoMeta(photoMetaList)
