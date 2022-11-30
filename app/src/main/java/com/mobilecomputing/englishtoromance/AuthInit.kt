@@ -1,4 +1,4 @@
-package edu.utap.firebaseauth
+package com.mobilecomputing.englishtoromance
 
 import android.content.Intent
 import android.util.Log

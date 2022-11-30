@@ -12,7 +12,9 @@ import android.view.animation.AnimationSet
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 
 
 class FlashCard : AppCompatActivity() {
@@ -27,6 +29,8 @@ class FlashCard : AppCompatActivity() {
     var isFront = true
 
     private lateinit var colorFilter : ColorFilter
+
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -172,6 +176,9 @@ class FlashCard : AppCompatActivity() {
         starButton.setOnClickListener {
             if (starButton.colorFilter == colorFilter) {
                 starButton.setColorFilter(Color.argb(255, 255, 214, 0));
+                var id = UUID.randomUUID()
+                viewModel.createFlashCardMeta(englishWords[currentIndex], spanishWords[currentIndex],
+                id.toString())
             } else {
                 starButton.setColorFilter(colorFilter)
             }

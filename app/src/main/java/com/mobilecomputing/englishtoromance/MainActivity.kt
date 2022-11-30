@@ -17,8 +17,7 @@ import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.google.android.material.snackbar.Snackbar
 import com.mobilecomputing.englishtoromance.databinding.ActivityMainBinding
 import com.mobilecomputing.englishtoromance.databinding.ContentMainBinding
-import edu.utap.firebaseauth.AuthInit
-import edu.utap.firebaseauth.MainViewModel
+
 
 
 class MainActivity : AppCompatActivity() {
