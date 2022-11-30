@@ -64,7 +64,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:id="@+id/backCard"
-        android:text="Back Card"
+        android:text="Hello"
         android:textSize="30dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
     <TextView
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:text="Front Card"
+        android:text="Hola"
         android:textSize="30dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
@@ -125,6 +125,7 @@
                 android:layout_weight="1"
                 android:layout_margin="20dp"
                 android:backgroundTint="@color/Button_Accent"
+                android:id="@+id/previousFlash"
                 android:text="Previous Word">
 
             </Button>
@@ -141,6 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_margin="20dp"
+                android:id="@+id/nextFlash"
                 android:backgroundTint="@color/Button_Accent"
                 android:text="Next Word">
 

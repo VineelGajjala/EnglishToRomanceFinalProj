@@ -2,16 +2,25 @@ package com.mobilecomputing.englishtoromance
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.animation.AnimationSet
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
 
 class FlashCard : AppCompatActivity() {
     private var count = 0 // number of words searched through
     lateinit var front_anim:AnimatorSet
     lateinit var back_anim:AnimatorSet
+
+    private var englishWords = arrayOf("Hello", "I'm Sorry", "No")
+    private var spanishWords = arrayOf("Hola", "Lo Siento", "No")
+    private var currentIndex = 0
+
     var isFront = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +69,94 @@ class FlashCard : AppCompatActivity() {
                 isFront = true
 
             }
+        }
+
+        //nextWord
+        //previous Word
+        //Transition between different words
+
+        var nextWordButton : Button = findViewById(R.id.nextFlash)
+        var previousWordButton : Button = findViewById(R.id.previousFlash)
+
+        nextWordButton.setOnClickListener {
+            var x:String = "X:" + cardFront.x.toString()
+            Log.d("XXX", x)
+
+            cardFront.animate()
+                .setDuration(500)
+                .translationX(-1300f)
+                .withEndAction(Runnable {
+
+                    currentIndex += 1
+                    currentIndex %= spanishWords.size
+                    cardBack.text = englishWords[currentIndex]
+                    cardFront.text = spanishWords[currentIndex]
+
+                    cardBack.x = 1300f
+                    cardFront.x = 1300f
+                    // Do something.
+                    ObjectAnimator.ofFloat(cardFront, "translationX", 0f).apply {
+                        duration = 500
+                        start()
+                    }
+
+                    ObjectAnimator.ofFloat(cardBack, "translationX", 0f).apply {
+                        duration = 500
+                        start()
+                    }
+
+                    x = "X:" + cardFront.x.toString()
+                    Log.d("XXX", x)
+
+                })
+                .start()
+
+            cardBack.animate()
+                .setDuration(500)
+                .translationX(-1300f)
+                .start()
+
+        }
+
+        previousWordButton.setOnClickListener {
+
+            var x:String = "X:" + cardFront.x.toString()
+            Log.d("XXX", x)
+
+            cardFront.animate()
+                .setDuration(500)
+                .translationX(1300f)
+                .withEndAction(Runnable {
+
+                    currentIndex -= 1
+                    if (currentIndex < 0) { currentIndex = spanishWords.size - 1}
+                    cardBack.text = englishWords[currentIndex]
+                    cardFront.text = spanishWords[currentIndex]
+
+                    cardBack.x = -1300f
+                    cardFront.x = -1300f
+                    // Do something.
+                    ObjectAnimator.ofFloat(cardFront, "translationX", 0f).apply {
+                        duration = 500
+                        start()
+                    }
+
+                    ObjectAnimator.ofFloat(cardBack, "translationX", 0f).apply {
+                        duration = 500
+                        start()
+                    }
+
+                    x = "X:" + cardFront.x.toString()
+                    Log.d("XXX", x)
+
+                })
+                .start()
+
+            cardBack.animate()
+                .setDuration(500)
+                .translationX(1300f)
+                .start()
+
         }
 
 
