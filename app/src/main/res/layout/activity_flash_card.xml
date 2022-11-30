@@ -34,6 +34,20 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:id="@+id/starFlash"
+        android:src="@drawable/ic_fullstar"
+        android:tint="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/FlashCardToolbar"
+        >
+
+    </ImageView>
+
 <!--        <ViewFlipper-->
 <!--            android:id="@+id/simpleViewFlipper"-->
 <!--            android:layout_width="match_parent"-->

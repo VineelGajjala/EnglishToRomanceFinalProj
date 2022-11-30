@@ -4,10 +4,13 @@ import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.ColorFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.AnimationSet
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -22,6 +25,8 @@ class FlashCard : AppCompatActivity() {
     private var currentIndex = 0
 
     var isFront = true
+
+    private lateinit var colorFilter : ColorFilter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -158,6 +163,24 @@ class FlashCard : AppCompatActivity() {
                 .start()
 
         }
+
+        // Star functionality
+        var starButton : ImageView = findViewById(R.id.starFlash)
+        starButton.setColorFilter(Color.argb(255, 50, 50, 50))
+        colorFilter = starButton.colorFilter
+
+        starButton.setOnClickListener {
+            if (starButton.colorFilter == colorFilter) {
+                starButton.setColorFilter(Color.argb(255, 255, 214, 0));
+            } else {
+                starButton.setColorFilter(colorFilter)
+            }
+//            starButton.setColorFilter(Color.argb(255, 255, 214, 0));
+            Log.d("XXX", starButton.colorFilter.toString())
+//            print("XXX:" + starButton.colorFilter.toString())
+        }
+
+
 
 
     }
