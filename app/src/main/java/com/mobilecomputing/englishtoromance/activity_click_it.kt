@@ -27,6 +27,7 @@ import com.mobilecomputing.englishtoromance.api.WordsRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlin.math.log
 import kotlin.random.Random
+import kotlin.random.nextInt
 
 class activity_click_it : AppCompatActivity() {
 
@@ -41,8 +42,9 @@ class activity_click_it : AppCompatActivity() {
     private val warnColor = Color.BLACK
     private val wordsApi = WordsApi.create()
     private val wordsRepo = WordsRepository(wordsApi)
-    private var allWords = listOf<String>()
+    private var allWords = wordsRepo.getRandomWords()
     private lateinit var testWord : TextView
+    private lateinit var wordsLeftTV : TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +67,7 @@ class activity_click_it : AppCompatActivity() {
         var exitButton : Button = findViewById(R.id.exitClickIt)
         var switchButton : ImageButton = findViewById(R.id.switchLanguage)
         testWord = findViewById(R.id.test_word)
+        wordsLeftTV = findViewById(R.id.words_left)
 
         exitButton.setOnClickListener {
             var data = Intent()
@@ -88,17 +91,24 @@ class activity_click_it : AppCompatActivity() {
             }
         }
 
-        // gather words
-        CoroutineScope(Dispatchers.IO).launch {
-            allWords = wordsRepo.getWords()
-        }
+//        // gather words
+//        CoroutineScope(Dispatchers.IO).launch {
+//            allWords = wordsRepo.getWords()
+//        }
+
+        // gather random words
+//        allWords = wordsRepo.getRandomWords()
 
         // play game
-        while (wordsLeft > 0){
+//        while (wordsLeft > 0){
             playRound {
+                if (wordsLeft == 0){
+
+                }
                 percentage = (1 - (wordsLeft * .1)) * 10
+                playRound {  }
             }
-        }
+//        }
     }
 
     private fun downloadModal(input: String, button: Button?) {
@@ -109,11 +119,7 @@ class activity_click_it : AppCompatActivity() {
         // below line is use to download our modal.
         translator!!.downloadModelIfNeeded(conditions)
             .addOnSuccessListener(OnSuccessListener<Void?> { // this method is called when modal is downloaded successfully.
-                Toast.makeText(
-                    this,
-                    "Please wait language modal is being downloaded.",
-                    Toast.LENGTH_SHORT
-                ).show()
+
 
                 // calling method to translate our entered text.
                 if (button == null){
@@ -210,7 +216,7 @@ class activity_click_it : AppCompatActivity() {
         }
 
         // gather word to test and check to see if it should be translated based on switch element
-        val wordToTest = gameWords[Random.nextInt(gameWords.size) - 1]
+        val wordToTest = gameWords[Random.nextInt(1..gameWords.size) - 1]
 
         // show test word
         if (fromLanguage == 1){
@@ -221,7 +227,8 @@ class activity_click_it : AppCompatActivity() {
 
         // set the words for the buttons
         for (i in 4 downTo 1){
-            val word = gameWords[Random.nextInt(i - 1)]
+            val word = gameWords[Random.nextInt(1..i) - 1]
+            gameWords.remove(word)
             if (wordToTest == word){correctButton = i}
             when (i) {
                 1 -> {
@@ -234,25 +241,25 @@ class activity_click_it : AppCompatActivity() {
 
                 2 -> {
                     if (fromLanguage == 0) {
-                        downloadModal(word, answer1)
+                        downloadModal(word, answer2)
                     } else {
-                        answer1.text = word
+                        answer2.text = word
                     }
                 }
 
                 3 -> {
                     if (fromLanguage == 0) {
-                        downloadModal(word, answer1)
+                        downloadModal(word, answer3)
                     } else {
-                        answer1.text = word
+                        answer3.text = word
                     }
                 }
 
                 4 -> {
                     if (fromLanguage == 0) {
-                        downloadModal(word, answer1)
+                        downloadModal(word, answer4)
                     } else {
-                        answer1.text = word
+                        answer4.text = word
                     }
                 }
             }
@@ -283,7 +290,7 @@ class activity_click_it : AppCompatActivity() {
                 wordsLeft--
                 roundDone()
             } else {
-                outOfOrderPick(answer2)
+                outOfOrderPick(answer3)
             }
         }
         answer4.setOnClickListener{
@@ -295,5 +302,7 @@ class activity_click_it : AppCompatActivity() {
                 outOfOrderPick(answer4)
             }
         }
+
+        wordsLeftTV.text = wordsLeft.toString()
     }
 }
