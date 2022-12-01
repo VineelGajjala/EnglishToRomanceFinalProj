@@ -100,7 +100,6 @@ class activity_click_it : AppCompatActivity() {
 //        allWords = wordsRepo.getRandomWords()
 
         // play game 10 times
-
             playRound {
                 percentage = (1 - (wordsLeft * .1)) * 10
                 playRound {
@@ -125,6 +124,22 @@ class activity_click_it : AppCompatActivity() {
                                                     wordsLeft = 0
                                                     var text : TextView = findViewById(R.id.words_left)
                                                     text.text = "0"
+                                                    var text2 : TextView = findViewById(R.id.test_word)
+                                                    text2.text = "CONGRATS! CLICK-IT COMPLETE!"
+
+                                                    // Set Buttons to say "Done!"
+                                                    var answer1 : Button = findViewById(R.id.word_1)
+                                                    var answer2 : Button = findViewById(R.id.word_2)
+                                                    var answer3 : Button = findViewById(R.id.word_3)
+                                                    var answer4 : Button = findViewById(R.id.word_4)
+                                                    answer1.setBackgroundColor(getColor(R.color.Button_Accent))
+                                                    answer2.setBackgroundColor(getColor(R.color.Button_Accent))
+                                                    answer3.setBackgroundColor(getColor(R.color.Button_Accent))
+                                                    answer4.setBackgroundColor(getColor(R.color.Button_Accent))
+                                                    answer1.text = "DONE!"
+                                                    answer2.text = "DONE!"
+                                                    answer3.text = "DONE!"
+                                                    answer4.text = "DONE!"
                                                 }
                                             }
                                         }
