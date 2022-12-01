@@ -8,7 +8,7 @@ import retrofit2.http.GET
 data class WordsList (val words: List<String>)
 interface WordsApi {
     @GET("data/words.json")
-    suspend fun getWords() : WordsList
+    fun getWords() : WordsList
 
     /**
      * Factory class for convenient creation of the Api Service interface

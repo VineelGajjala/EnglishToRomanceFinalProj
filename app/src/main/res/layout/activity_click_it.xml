@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text="EXIT"
                 android:backgroundTint="@color/Button_Accent"
+                android:id="@+id/exitClickIt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,6 +33,7 @@
                 android:src="@android:drawable/arrow_up_float"
                 android:layout_weight="4"
                 android:scaleType="fitCenter"
+                android:id="@+id/switchLanguage"
                 app:tint="@color/Button_Accent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
