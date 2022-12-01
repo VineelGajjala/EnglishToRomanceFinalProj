@@ -14,7 +14,7 @@ class MainViewModel : ViewModel() {
     private var currentIndex = MutableLiveData<Int>()
 
     fun setInitialValues() {
-        var hiFlash = flashCardData("OOOOH", "AHHHH")
+        var hiFlash = flashCardData("Hola", "Hello")
         var flashCards = listOf(hiFlash,
             flashCardData("Hoy", "Here"),
             flashCardData("Adios", "Bye"),

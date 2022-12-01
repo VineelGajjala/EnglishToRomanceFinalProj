@@ -121,6 +121,10 @@ class activity_click_it : AppCompatActivity() {
                                                 percentage = (1 - (wordsLeft * .1)) * 10
                                                 playRound {
                                                     percentage = 100.0
+                                                    Toast.makeText(this, "You got all 10!",Toast.LENGTH_SHORT ).show()
+                                                    wordsLeft = 0
+                                                    var text : TextView = findViewById(R.id.words_left)
+                                                    text.text = "0"
                                                 }
                                             }
                                         }
