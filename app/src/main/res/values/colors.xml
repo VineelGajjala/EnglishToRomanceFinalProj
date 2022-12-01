@@ -11,4 +11,9 @@
     <color name="Background">#fe3981</color>
     <color name="ToolBar_Accent">#a31a23</color>
     <color name="grey">#d3d3d3</color>
+    <color name="blueOrigin">#5482FC</color>
+    <color name="blueSecond">#132551</color>
+    <color name="blueSoft">#EAEFF9</color>
+    <color name="silver">#9F9F9F</color>
+
 </resources>

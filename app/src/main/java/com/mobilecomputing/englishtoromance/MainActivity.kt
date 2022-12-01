@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.app.Activity
 import android.content.Intent
 import android.util.Log
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.mobilecomputing.englishtoromance.databinding.ActivityMainBinding
@@ -38,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         if (this.getSupportActionBar() != null) {
             this.getSupportActionBar()!!.hide();
         }
+        supportActionBar?.hide()
 
         contentMainBinding.clickitLaunch.setOnClickListener {
             intent = Intent(this, activity_click_it::class.java)
@@ -62,6 +67,26 @@ class MainActivity : AppCompatActivity() {
             Log.d("XXX", "Launched activity")
             resultLauncher.launch(intent)
         }
+
+        val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
+
+        val title : TextView = contentMainBinding.title
+        val subtitle : TextView = contentMainBinding.subtitle
+
+        val clickIt : LinearLayout = contentMainBinding.clickitLaunch
+        val flash : LinearLayout = contentMainBinding.flashCardLaunch
+        val learn : LinearLayout = contentMainBinding.learnLaunch
+        val test : TextView = contentMainBinding.testLaunch
+
+        val heart : ImageView = contentMainBinding.heart
+
+        title.startAnimation(ttb)
+        subtitle.startAnimation(ttb)
+        clickIt.startAnimation(ttb)
+        flash.startAnimation(ttb)
+        learn.startAnimation(ttb)
+        test.startAnimation(ttb)
+        heart.startAnimation(ttb)
 
 
 
