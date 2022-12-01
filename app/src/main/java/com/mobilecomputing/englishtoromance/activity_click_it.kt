@@ -99,17 +99,40 @@ class activity_click_it : AppCompatActivity() {
         // gather random words
 //        allWords = wordsRepo.getRandomWords()
 
-        // play game
-//        while (wordsLeft > 0){
-            playRound {
-                if (wordsLeft == 0){
+        // play game 10 times
 
-                }
+            playRound {
                 percentage = (1 - (wordsLeft * .1)) * 10
-                playRound {  }
+                playRound {
+                    percentage = (1 - (wordsLeft * .1)) * 10
+                    playRound {
+                        percentage = (1 - (wordsLeft * .1)) * 10
+                        playRound {
+                            percentage = (1 - (wordsLeft * .1)) * 10
+                            playRound {
+                                percentage = (1 - (wordsLeft * .1)) * 10
+                                playRound {
+                                    percentage = (1 - (wordsLeft * .1)) * 10
+                                    playRound {
+                                        percentage = (1 - (wordsLeft * .1)) * 10
+                                        playRound {
+                                            percentage = (1 - (wordsLeft * .1)) * 10
+                                            playRound {
+                                                percentage = (1 - (wordsLeft * .1)) * 10
+                                                playRound {
+                                                    percentage = 100.0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-//        }
     }
+
 
     private fun downloadModal(input: String, button: Button?) {
         // below line is use to download the modal which
@@ -119,8 +142,6 @@ class activity_click_it : AppCompatActivity() {
         // below line is use to download our modal.
         translator!!.downloadModelIfNeeded(conditions)
             .addOnSuccessListener(OnSuccessListener<Void?> { // this method is called when modal is downloaded successfully.
-
-
                 // calling method to translate our entered text.
                 if (button == null){
                     translateLanguage(input)
@@ -225,6 +246,11 @@ class activity_click_it : AppCompatActivity() {
             testWord.text = wordToTest
         }
 
+        // set button backgrounds
+        answer1.setBackgroundColor(getColor(R.color.Button_Accent))
+        answer2.setBackgroundColor(getColor(R.color.Button_Accent))
+        answer3.setBackgroundColor(getColor(R.color.Button_Accent))
+        answer4.setBackgroundColor(getColor(R.color.Button_Accent))
         // set the words for the buttons
         for (i in 4 downTo 1){
             val word = gameWords[Random.nextInt(1..i) - 1]
@@ -302,6 +328,7 @@ class activity_click_it : AppCompatActivity() {
                 outOfOrderPick(answer4)
             }
         }
+
 
         wordsLeftTV.text = wordsLeft.toString()
     }
