@@ -25,29 +25,31 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-        <activity android:name=".activity_click_it"
+        <activity
+            android:name=".activity_click_it"
             android:exported="true"
             android:label="Intent"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-        <activity android:name=".activity_test"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".activity_test"
             android:exported="true"
             android:label="Intent"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-        <activity android:name=".FlashCard"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".FlashCard"
             android:exported="true"
             android:label="Intent"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-        <activity android:name=".Learn"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".Learn"
             android:exported="true"
             android:label="Intent"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-
-
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".makeNewFlashcard"
+            android:exported="true"
+            android:label="Intent"
+            android:windowSoftInputMode="adjustResize"></activity>
     </application>
 
 </manifest>

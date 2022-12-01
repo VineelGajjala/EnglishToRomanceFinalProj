@@ -3,6 +3,7 @@ package com.mobilecomputing.englishtoromance
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.ColorFilter
@@ -12,26 +13,47 @@ import android.view.animation.AnimationSet
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import edu.utap.firebaseauth.MainViewModel
 
 
 class FlashCard : AppCompatActivity() {
+
+    private var resultLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                Log.d(javaClass.simpleName, "result ok")
+                val data = result.data
+                val english = data!!.getStringExtra("english")
+                val spanish = data!!.getStringExtra("spanish")
+                if (english != "" && spanish != "") {
+                    viewModel.addToAll(english!!, spanish!!)
+                }
+            } else {
+                Log.w(javaClass.simpleName, "Bad activity return code ${result.resultCode}")
+            }
+        }
+
+
     private var count = 0 // number of words searched through
     lateinit var front_anim:AnimatorSet
     lateinit var back_anim:AnimatorSet
-
-    private var englishWords = arrayOf("Hello", "I'm Sorry", "No")
-    private var spanishWords = arrayOf("Hola", "Lo Siento", "No")
-    private var currentIndex = 0
 
     var isFront = true
 
     private lateinit var colorFilter : ColorFilter
 
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flash_card)
 
+        viewModel.setInitialValues()
         //exit intent
         var exitButton : Button = findViewById(R.id.exitFlash)
 
@@ -92,10 +114,7 @@ class FlashCard : AppCompatActivity() {
                 .translationX(-1300f)
                 .withEndAction(Runnable {
 
-                    currentIndex += 1
-                    currentIndex %= spanishWords.size
-                    cardBack.text = englishWords[currentIndex]
-                    cardFront.text = spanishWords[currentIndex]
+                    viewModel.increaseIndex()
 
                     cardBack.x = 1300f
                     cardFront.x = 1300f
@@ -133,10 +152,7 @@ class FlashCard : AppCompatActivity() {
                 .translationX(1300f)
                 .withEndAction(Runnable {
 
-                    currentIndex -= 1
-                    if (currentIndex < 0) { currentIndex = spanishWords.size - 1}
-                    cardBack.text = englishWords[currentIndex]
-                    cardFront.text = spanishWords[currentIndex]
+                    viewModel.decreaseIndex()
 
                     cardBack.x = -1300f
                     cardFront.x = -1300f
@@ -172,12 +188,33 @@ class FlashCard : AppCompatActivity() {
         starButton.setOnClickListener {
             if (starButton.colorFilter == colorFilter) {
                 starButton.setColorFilter(Color.argb(255, 255, 214, 0));
+                viewModel.addToFavorites()
             } else {
                 starButton.setColorFilter(colorFilter)
+                viewModel.removeFavorite()
             }
 //            starButton.setColorFilter(Color.argb(255, 255, 214, 0));
             Log.d("XXX", starButton.colorFilter.toString())
 //            print("XXX:" + starButton.colorFilter.toString())
+        }
+
+        viewModel.observeCurrentFlashCard().observe(this) {
+            cardBack.text = it.englishWord
+            cardFront.text = it.spanishWord
+
+            if (it in viewModel.getFavorited()) {
+                starButton.setColorFilter(Color.argb(255, 255, 214, 0));
+            } else {
+                starButton.setColorFilter(colorFilter)
+            }
+        }
+
+        var makeFlash : Button = findViewById(R.id.addFlash)
+
+        makeFlash.setOnClickListener {
+            intent = Intent(this, makeNewFlashcard::class.java)
+            Log.d("XXX", "Launched activity")
+            resultLauncher.launch(intent)
         }
 
 

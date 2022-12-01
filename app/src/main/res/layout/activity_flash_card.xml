@@ -139,14 +139,17 @@
                 android:layout_margin="20dp"
                 android:backgroundTint="@color/Button_Accent"
                 android:id="@+id/previousFlash"
-                android:text="Previous Word">
+                android:text="Last Word">
 
             </Button>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible">
+                android:id="@+id/addFlash"
+                android:backgroundTint="@color/Button_Accent"
+                android:text="Make Flash"
+                >
 
             </Button>
 
