@@ -7,8 +7,8 @@ import retrofit2.http.GET
 
 data class WordsList (val words: List<String>)
 interface WordsApi {
-    @GET("data/words.json")
-    fun getWords() : WordsList
+    @GET("data")
+    suspend fun getWords() : WordsList
 
     /**
      * Factory class for convenient creation of the Api Service interface
@@ -18,7 +18,7 @@ interface WordsApi {
             val retrofit: Retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 // Must end in /!
-                .baseUrl("https://www.randomlists.com/")
+                .baseUrl("https://www.randomlists.com/data/words.json/")
                 .build()
             return retrofit.create(WordsApi::class.java)
         }

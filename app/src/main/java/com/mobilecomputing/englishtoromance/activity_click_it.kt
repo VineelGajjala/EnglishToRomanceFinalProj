@@ -11,6 +11,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions
@@ -22,6 +24,8 @@ import com.mobilecomputing.englishtoromance.databinding.ActivityClickItBinding
 import java.util.*
 import com.mobilecomputing.englishtoromance.api.WordsApi
 import com.mobilecomputing.englishtoromance.api.WordsRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlin.math.log
 import kotlin.random.Random
 
 class activity_click_it : AppCompatActivity() {
@@ -37,8 +41,9 @@ class activity_click_it : AppCompatActivity() {
     private val warnColor = Color.BLACK
     private val wordsApi = WordsApi.create()
     private val wordsRepo = WordsRepository(wordsApi)
-    private val allWords = wordsRepo.getWords()
-    private var testWord: TextView = findViewById(R.id.test_word)
+    private var allWords = listOf<String>()
+    private lateinit var testWord : TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +64,7 @@ class activity_click_it : AppCompatActivity() {
 
         var exitButton : Button = findViewById(R.id.exitClickIt)
         var switchButton : ImageButton = findViewById(R.id.switchLanguage)
+        testWord = findViewById(R.id.test_word)
 
         exitButton.setOnClickListener {
             var data = Intent()
@@ -80,6 +86,11 @@ class activity_click_it : AppCompatActivity() {
                 toLanguage = 1
                 setTranslator()
             }
+        }
+
+        // gather words
+        CoroutineScope(Dispatchers.IO).launch {
+            allWords = wordsRepo.getWords()
         }
 
         // play game
@@ -194,7 +205,8 @@ class activity_click_it : AppCompatActivity() {
 
         gameWords.clear()
         for (i in 0..3 ){
-            gameWords.add(allWords[Random.nextInt(allWords.size) - 1])
+            Log.d("Number of words", allWords.size.toString())
+            gameWords.add(allWords[Random.nextInt(allWords.size)])
         }
 
         // gather word to test and check to see if it should be translated based on switch element
